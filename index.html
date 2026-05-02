@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS VIP- KING EDITION</title>
+    <style>
+        /* -----------------------------------------------------------
+           NAYEEM VIP TEAM KING  - SECURITY LAYER 7 ACTIVE
+           ----------------------------------------------------------- */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
+        :root { --gold: #ffd700; --shadow: rgba(255, 215, 0, 0.4); --bg: #000000; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: #fff; font-family: 'Orbitron', sans-serif; overflow-x: hidden; display: flex; justify-content: center; }
+
+        /* Complex Background Particles */
+        #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        /* King Auth Screen */
+        #auth-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: 1s; }
+        .auth-card { width: 380px; padding: 60px 40px; background: rgba(10,10,10,0.9); border: 2px solid var(--gold); border-radius: 30px; text-align: center; box-shadow: 0 0 60px var(--shadow); border-top-width: 10px; }
+        .auth-card h2 { color: var(--gold); letter-spacing: 5px; margin-bottom: 30px; font-size: 1.5rem; }
+
+        /* Dashboard UI */
+        #king-dashboard { display: none; width: 100%; max-width: 480px; padding: 25px; animation: slideIn 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(100px); } to { opacity: 1; transform: translateY(0); } }
+
+        .king-title { font-size: 3rem; font-weight: 900; text-align: center; margin: 40px 0; background: linear-gradient(180deg, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px var(--gold)); letter-spacing: 5px; }
+
+        .status-box { background: rgba(20,20,25,0.8); border: 2px solid var(--gold); border-radius: 0 50px 0 50px; padding: 40px 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.8); position: relative; overflow: hidden; margin-bottom: 25px; }
+        .timer-val { font-size: 5rem; font-weight: 900; color: var(--gold); text-shadow: 0 0 40px var(--gold); }
+        
+        .progress-engine { height: 12px; background: #111; border-radius: 20px; margin-top: 25px; position: relative; border: 1px solid #333; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #b8860b, var(--gold)); width: 100%; box-shadow: 0 0 20px var(--gold); transition: 1s linear; }
+
+        .prediction-grid { display: flex; gap: 20px; margin-top: 25px; }
+        .pred-tile { flex: 1; background: rgba(15,15,20,0.9); border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--gold); transition: 0.4s; }
+        .pred-tile:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--shadow); }
+        .pred-label { font-size: 10px; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .pred-val { font-size: 2rem; font-weight: 900; letter-spacing: 2px; }
+
+        .royal-btn { width: 100%; padding: 24px; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem; margin-top: 20px; border: none; border-radius: 15px; cursor: pointer; transition: 0.4s; text-transform: uppercase; letter-spacing: 3px; position: relative; }
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 15px 40px rgba(255,215,0,0.3); }
+        .btn-white { background: #fff; color: #000; }
+        .royal-btn:active { transform: scale(0.95); }
+
+        input { width: 100%; padding: 20px; background: #0a0a0a; border: 2px solid var(--gold); color: var(--gold); border-radius: 15px; margin-bottom: 25px; text-align: center; font-family: 'Orbitron', sans-serif; font-size: 1.3rem; }
+
+        .footer-sec { margin-top: 40px; padding: 20px; background: rgba(15,15,20,0.8); border: 1px solid #222; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .info-txt { font-size: 10px; color: #555; }
+        .info-txt b { color: var(--gold); font-size: 14px; display: block; }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- SECURITY AUTH GATE -->
+    <div id="auth-overlay">
+        <div class="auth-card">
+            <h2>KING LOGIN</h2>
+            <input type="password" id="king-key" placeholder="••••••••">
+            <button class="royal-btn btn-gold" onclick="verify()">UNLEASH</button>
+            <p style="margin-top:20px; font-size:10px; color:#444;">NAYEEM VIP TEAM BD ORIGINAL SYSTEM</p>
+        </div>
+    </div>
+
+    <!-- MAIN INTERFACE -->
+    <div id="king-dashboard">
+        <h1 class="king-title">ns secret console </h1>
+        
+        <div class="status-box">
+            <p style="font-size:12px; color:#888; letter-spacing:5px; margin-bottom:15px;">NEXT VIP ANALYSIS</p>
+            <div id="clock" class="timer-val">00:30</div>
+            <div class="progress-engine"><div id="engine-fill" class="progress-fill"></div></div>
+        </div>
+
+        <div class="prediction-grid">
+            <div class="pred-tile">
+                <div class="pred-label">NS TEAM COLOR</div>
+                <div id="c-res" class="pred-val" style="color: #ff3131; text-shadow: 0 0 20px #ff3131;">RED</div>
+            </div>
+            <div class="pred-tile">
+                <div class="pred-label">NS TEAM SIZE</div>
+                <div id="s-res" class="pred-val" style="color: var(--gold); text-shadow: 0 0 20px var(--gold);">BIG</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <button class="royal-btn btn-gold" onclick="window.location.href='https://amarclub0.com/#/register?invitationCode=71837189574'">🎮 registration</button>
+            <button class="royal-btn btn-white" onclick="window.location.href='https://t.me/NSVIPTIM90'">💎 VIP CHANNEL</button>
+        </div>
+
+        <div class="footer-sec">
+            <div class="info-txt">
+                SYSTEM DEVELOPER
+                <b>@TREDAR_NAIM_BOSS</b>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="40" onclick="window.location.href='https://t.me/NSVIPTIM90'">
+        </div>
+    </div>
+
+    <script>
+        // Particle Engine
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let p = [];
+        for(let i=0; i<60; i++) p.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*2, v: Math.random()*0.5});
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "#ffd70033";
+            p.forEach(i => {
+                ctx.beginPath(); ctx.arc(i.x, i.y, i.s, 0, Math.PI*2); ctx.fill();
+                i.y -= i.v; if(i.y < 0) i.y = canvas.height;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        function verify() {
+            const secret = localStorage.getItem('sys_userPass') || "KING786";
+            if(document.getElementById('king-key').value === secret) {
+                document.getElementById('auth-overlay').style.transform = 'scale(0)';
+                setTimeout(() => {
+                    document.getElementById('auth-overlay').style.display='none';
+                    document.getElementById('king-dashboard').style.display='block';
+                    runEngine();
+                }, 1000);
+            } else { alert("ACCESS DENIED"); }
+        }
+
+        let time = 20;
+        function runEngine() {
+            setInterval(() => {
+                time--;
+                if(time < 0) { time = 30; updateResults(); }
+                document.getElementById('clock').innerText = "00:" + (time < 10 ? "0"+time : time);
+                document.getElementById('engine-fill').style.width = (time / 20 * 100) + "%";
+            }, 1000);
+        }
+
+        function updateResults() {
+            const sig = JSON.parse(localStorage.getItem('game_signal')) || {mode: "auto"};
+            let c, sz;
+            if(sig.mode === "manual") { c = sig.color; sz = sig.size; }
+            else {
+                c = Math.random() > 0.5 ? "RED" : "GREEN";
+                sz = Math.random() > 0.5 ? "BIG" : "SMALL";
+            }
+            document.getElementById('c-res').innerText = c;
+            document.getElementById('c-res').style.color = (c === "RED" ? "#ff3131" : "#39ff14");
+            document.getElementById('c-res').style.textShadow = "0 0 20px " + (c === "RED" ? "#ff3131" : "#39ff14");
+            document.getElementById('s-res').innerText = sz;
+        }
+    </script>
+</body>
+  </html>
